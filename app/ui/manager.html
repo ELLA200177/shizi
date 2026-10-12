@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>拾字 · 词库管理</title>
+<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="manager.css">
+</head>
+<body>
+  <header class="mgr-head">
+    <div>
+      <p class="mgr-eyebrow">词库</p>
+      <h1>词库管理</h1>
+    </div>
+    <div class="mgr-stat" id="stat"></div>
+  </header>
+
+  <div class="mgr-body">
+    <aside class="mgr-side">
+      <input id="search" class="mgr-input" type="text" placeholder="搜索内容、触发码或别名…" autocomplete="off">
+      <nav class="mgr-filters" id="filters"></nav>
+    </aside>
+    <main class="mgr-list" id="list"></main>
+  </div>
+
+  <footer class="mgr-foot">
+    <button class="mgr-btn primary" id="btnNew">＋ 新建词条</button>
+    <button class="mgr-btn" id="btnExportPack" hidden>导出此包</button>
+    <span class="mgr-hint" id="hint"></span>
+  </footer>
+
+  <div class="mgr-modal" id="modal" hidden>
+    <div class="mgr-card">
+      <h2 id="formTitle">新建词条</h2>
+
+      <label class="mgr-label" for="fText">要插入的内容 <span class="req">*</span></label>
+      <textarea id="fText" class="mgr-input" rows="2" placeholder="例如：(A123×B456)×B456"></textarea>
+
+      <label class="mgr-label" for="fTrigger">触发码 <span class="opt">留空则只能用面板搜索</span></label>
+      <input id="fTrigger" class="mgr-input mono" type="text" placeholder=";你的触发码" autocomplete="off">
+      <div class="mgr-suggest" id="suggest"></div>
+      <div class="mgr-note" id="note"></div>
+
+      <label class="mgr-label" for="fAliases">别名 <span class="opt">逗号分隔，用于搜索</span></label>
+      <input id="fAliases" class="mgr-input" type="text" placeholder="A123, B456">
+
+      <label class="mgr-label" for="fGroup">分组 <span class="opt">可选</span></label>
+      <input id="fGroup" class="mgr-input" type="text" placeholder="例：单位符号">
+
+      <div class="mgr-actions">
+        <button class="mgr-btn danger" id="btnDelete" hidden>删除</button>
+        <span class="spacer"></span>
+        <button class="mgr-btn" id="btnCancel">取消</button>
+        <button class="mgr-btn primary" id="btnSave">保存</button>
+      </div>
+      <div class="mgr-error" id="formError" hidden></div>
+    </div>
+  </div>
+
+  <script src="themes.js"></script>
+  <script src="manager.js"></script>
+</body>
+</html>

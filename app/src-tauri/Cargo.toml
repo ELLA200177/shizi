@@ -1,0 +1,28 @@
+[package]
+name = "shizi"
+version = "0.1.0"
+edition = "2021"
+description = "拾字 — 键盘打不出来的字，一个热键调出来"
+license = "MIT"
+
+[build-dependencies]
+tauri-build = { version = "2", features = [] }
+
+[dependencies]
+tauri = { version = "2", features = ["tray-icon"] }
+tauri-plugin-global-shortcut = "2"
+tauri-plugin-single-instance = "2"
+tauri-plugin-dialog = "2"
+tauri-plugin-autostart = "2"
+arboard = "3"
+rusqlite = { version = "0.32", features = ["bundled"] }
+pinyin = "0.10"
+dirs = "7"          # 数据目录要放在用户找得到的地方（见 main.rs 的 user_data_dir）   # 触发码建议要从中文生成拼音首字母/全拼
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+
+[profile.release]
+opt-level = "s"
+lto = true
+codegen-units = 1
+strip = true

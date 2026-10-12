@@ -1,0 +1,151 @@
+/* 词库管理窗口。沿用面板的主题变量，但布局是独立的（class 前缀 mgr-，不与面板冲突） */
+.mgr-head, .mgr-body, .mgr-foot { position: relative; }
+body{
+  background: var(--backdrop-base);
+  color: var(--fg);
+  display: flex; flex-direction: column; height: 100vh;
+}
+
+.mgr-head{
+  display: flex; align-items: center; gap: 16px;
+  padding: 18px 22px 14px;
+}
+.mgr-eyebrow{ font-size: 11.5px; letter-spacing: 1.8px; color: var(--accent); font-weight: 600; }
+.mgr-head h1{ font-size: 22px; font-weight: 700; letter-spacing: -.3px; margin-top: 6px; }
+.mgr-stat{ margin-left: auto; font-size: 11.5px; padding: 4px 11px; border-radius: 999px;
+  background: var(--accent-soft); color: var(--accent); font-variant-numeric: tabular-nums; }
+
+.mgr-body{ flex: 1; display: flex; gap: 14px; padding: 0 22px; min-height: 0; }
+
+/* ---- 左栏 ---- */
+.mgr-side{ width: 232px; flex: none; display: flex; flex-direction: column; gap: 10px; }
+.mgr-input{
+  width: 100%; font-family: inherit; font-size: 13.5px; color: var(--fg);
+  background: var(--bg); border: 1px solid var(--line); border-radius: 10px;
+  padding: 9px 12px; outline: none; resize: vertical;
+}
+.mgr-input:focus{ border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-soft); }
+.mgr-input.mono{ font-family: "Cascadia Mono", Consolas, monospace; }
+.mgr-input::placeholder{ color: var(--fg-faint); }
+
+.mgr-filters{ display: flex; flex-direction: column; gap: 2px; overflow-y: auto; }
+.mgr-filters button{
+  display: flex; align-items: center; gap: 8px; width: 100%; text-align: left;
+  background: transparent; border: 0; color: var(--fg-dim); font: inherit; font-size: 13px;
+  padding: 8px 10px; border-radius: 8px; cursor: pointer;
+}
+.mgr-filters button:hover{ background: var(--pill-bg); color: var(--fg); }
+.mgr-filters button[aria-selected="true"]{ background: var(--accent-soft); color: var(--accent); font-weight: 600; }
+.mgr-filters .n{ margin-left: auto; font-size: 11px; opacity: .7; font-variant-numeric: tabular-nums; }
+.mgr-filters .sub{ padding-left: 22px; font-size: 12.5px; }
+
+/* ---- 右栏列表 ---- */
+.mgr-list{ flex: 1; overflow-y: auto; display: flex; flex-direction: column; gap: 8px; padding-bottom: 12px; }
+.mgr-row{
+  display: flex; align-items: center; gap: 12px;
+  background: var(--bg); border: 1px solid var(--line); border-radius: 12px;
+  padding: 11px 14px; cursor: default;
+}
+.mgr-row:hover{ border-color: var(--accent); }
+.mgr-row.off{ opacity: .45; }
+.mgr-row .trig{
+  flex: none; font-family: "Cascadia Mono", Consolas, monospace; font-size: 12px;
+  color: var(--fg-faint); min-width: 76px;
+}
+.mgr-row .txt{ flex: 1; font-size: 14px; font-weight: 500; overflow: hidden;
+  text-overflow: ellipsis; white-space: nowrap; }
+.mgr-row .grp{ flex: none; font-size: 11px; color: var(--fg-dim); background: var(--pill-bg);
+  padding: 2.5px 9px; border-radius: 999px; max-width: 130px; overflow: hidden;
+  text-overflow: ellipsis; white-space: nowrap; }
+.mgr-row .src{ flex: none; font-size: 10.5px; color: var(--fg-faint); width: 62px; text-align: right; }
+.mgr-row .acts{ flex: none; display: flex; gap: 6px; }
+.mgr-mini{
+  background: transparent; border: 1px solid var(--line); color: var(--fg-dim);
+  font: inherit; font-size: 11px; padding: 3px 9px; border-radius: 999px; cursor: pointer;
+}
+.mgr-mini:hover{ border-color: var(--accent); color: var(--accent); }
+.mgr-empty{ padding: 60px 0; text-align: center; color: var(--fg-faint); font-size: 13px; }
+
+/* ---- 底栏 ---- */
+.mgr-foot{ display: flex; align-items: center; gap: 12px; padding: 14px 22px 18px; }
+.mgr-hint{ font-size: 11.5px; color: var(--fg-faint); }
+.mgr-btn{
+  font: inherit; font-size: 13px; padding: 8px 16px; border-radius: 10px; cursor: pointer;
+  background: var(--bg); border: 1px solid var(--line); color: var(--fg);
+}
+.mgr-btn:hover{ border-color: var(--accent); color: var(--accent); }
+.mgr-btn.primary{ background: var(--accent); border-color: var(--accent); color: #fff; font-weight: 600; }
+.mgr-btn.primary:hover{ filter: brightness(1.08); color: #fff; }
+.mgr-btn.danger{ border-color: var(--line); color: #e5484d; }
+.mgr-btn.danger:hover{ border-color: #e5484d; }
+.spacer{ flex: 1; }
+
+/* ---- 新建/编辑 ---- */
+.mgr-modal{
+  position: fixed; inset: 0; background: rgba(8,10,16,.55);
+  display: flex; align-items: center; justify-content: center; padding: 24px;
+  backdrop-filter: blur(3px);
+}
+.mgr-modal[hidden]{ display: none; }
+.mgr-card{
+  width: 560px; max-height: 100%; overflow-y: auto;
+  background: var(--bg); border: 1px solid var(--line); border-radius: 16px;
+  padding: 22px 24px 20px; box-shadow: var(--shadow);
+}
+.mgr-card h2{ font-size: 17px; font-weight: 700; margin-bottom: 16px; }
+.mgr-label{ display: block; font-size: 12px; color: var(--fg-dim); margin: 14px 0 6px; }
+.mgr-label .req{ color: var(--accent); }
+.mgr-label .opt{ color: var(--fg-faint); font-size: 11px; }
+.mgr-suggest{ display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px; }
+.mgr-suggest button{
+  font: inherit; font-family: "Cascadia Mono", Consolas, monospace; font-size: 12px;
+  background: var(--pill-bg); border: 1px solid var(--line); color: var(--fg-dim);
+  padding: 3px 10px; border-radius: 999px; cursor: pointer;
+}
+.mgr-suggest button:hover{ border-color: var(--accent); color: var(--accent); }
+.mgr-suggest button.taken{ text-decoration: line-through; opacity: .45; cursor: not-allowed; }
+.mgr-note{ font-size: 11.5px; margin-top: 7px; min-height: 16px; color: var(--fg-faint); }
+.mgr-note.err{ color: #e5484d; }
+.mgr-note.warn{ color: #d97706; }
+.mgr-actions{ display: flex; align-items: center; gap: 8px; margin-top: 22px; }
+.mgr-error{
+  margin-top: 12px; font-size: 12.5px; color: #e5484d;
+  background: rgba(229,72,77,.10); border: 1px solid rgba(229,72,77,.3);
+  border-radius: 9px; padding: 9px 12px;
+}
+.mgr-error[hidden]{ display: none; }
+@media (prefers-reduced-motion: reduce){ *{ transition: none !important; } }
+
+/* ---------- 设置视图 ---------- */
+.set-block{
+  background: var(--bg); border: 1px solid var(--line); border-radius: 12px;
+  padding: 14px 16px; margin-bottom: 10px;
+}
+.set-title{ font-size: 12px; font-weight: 600; color: var(--fg-dim); letter-spacing: .4px; margin-bottom: 4px; }
+.set-hint{ font-size: 11.5px; color: var(--fg-faint); line-height: 1.6; }
+.set-hint.mono{ font-family: "Cascadia Mono", Consolas, monospace; word-break: break-all; }
+.set-row{ display: flex; align-items: center; gap: 10px; margin-top: 10px; }
+.set-row > div:first-child{ flex: 1; }
+.set-label{ font-size: 13.5px; }
+.hk-row{ display: flex; flex-wrap: wrap; gap: 6px; margin-top: 10px; }
+.hk{
+  font: inherit; font-family: "Cascadia Mono", Consolas, monospace; font-size: 12px;
+  background: var(--pill-bg); border: 1px solid var(--line); color: var(--fg-dim);
+  padding: 5px 12px; border-radius: 999px; cursor: pointer;
+}
+.hk:hover{ border-color: var(--accent); color: var(--accent); }
+.hk.on{ background: var(--accent-soft); border-color: var(--accent); color: var(--accent); font-weight: 600; }
+
+/* ---------- 首启欢迎卡片 ---------- */
+.welcome{
+  background: var(--bg); border: 1px solid var(--accent); border-radius: 12px;
+  padding: 16px 18px; margin-bottom: 12px;
+  box-shadow: 0 0 0 3px var(--accent-soft);
+}
+.welcome h3{ font-size: 15px; font-weight: 700; margin-bottom: 8px; }
+.welcome ol{ margin: 0; padding-left: 20px; font-size: 13px; line-height: 1.9; color: var(--fg); }
+.welcome code{
+  font-family: "Cascadia Mono", Consolas, monospace; font-size: 12.5px;
+  background: var(--pill-bg); padding: 1px 6px; border-radius: 5px;
+}
+.welcome .w-act{ margin-top: 12px; text-align: right; }

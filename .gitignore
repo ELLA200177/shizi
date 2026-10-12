@@ -1,0 +1,23 @@
+# ── Rust 构建产物：本机 10 GB，绝不能提交 ──
+target/
+
+# ── 开发期临时文件 ──
+/work/
+*.log
+*.err
+
+# ── 本地数据：词库数据库 / 备份 / 诊断日志（属个人数据，不进仓库）──
+*.db
+*.db-journal
+*.db-wal
+*.backup-*
+shizi-diag.log
+
+# ── Tauri 构建时自动重新生成的 schema ──
+**/src-tauri/gen/
+
+# ── 编辑器 / 系统 ──
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db

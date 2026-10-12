@@ -1,0 +1,15 @@
+{
+  "identifier": "default",
+  "description": "拾字面板所需权限",
+  "windows": [
+    "panel",
+    "manager"
+  ],
+  "permissions": [
+    "core:default",
+    "dialog:default",
+    "autostart:allow-enable",
+    "autostart:allow-disable",
+    "autostart:allow-is-enabled"
+  ]
+}

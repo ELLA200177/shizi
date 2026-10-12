@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>拾字 · 配色方案对比</title>
+<style>
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{
+    font-family:"Segoe UI Variable Display","Segoe UI","Microsoft YaHei UI","Microsoft YaHei",sans-serif;
+    background:#0b0c10; color:#e7e8ee; padding:38px 30px 60px;
+  }
+  h1{font-size:21px;font-weight:600;letter-spacing:.3px}
+  .sub{color:#8d8f9c;font-size:13px;margin:9px 0 30px;line-height:1.7}
+  .sub b{color:#cfd0d8;font-weight:500}
+  .grid{display:flex;flex-wrap:wrap;gap:34px 30px}
+  .card{width:582px}
+  .cap{display:flex;align-items:baseline;gap:10px;margin-bottom:9px}
+  .nm{font-size:14px;font-weight:600}
+  .ds{font-size:11.5px;color:#7d7f8c}
+  .open{margin-left:auto;font-size:11.5px;color:#9fa8c8;text-decoration:none;border-bottom:1px dashed rgba(255,255,255,.22)}
+  .open:hover{color:#fff}
+  iframe{width:582px;height:424px;border:0;border-radius:15px;display:block;background:transparent}
+</style>
+</head>
+<body>
+  <h1>配色方案对比</h1>
+  <p class="sub">
+    七套配色，<b>同一份词库、同一个查询（肝豆）、同一个面板尺寸</b>，只有颜色不同。第一个「极简白」是新的默认。<br>
+    每个面板都是真的能用的 &mdash; 点进去可以直接打字、用 ↑↓ 选择。选好后告诉我名字，我把它设成默认。
+  </p>
+  <div class="grid" id="grid"></div>
+  <script src="themes.js"></script>
+  <script src="gallery.js"></script>
+</body>
+</html>

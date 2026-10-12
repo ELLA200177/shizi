@@ -1,0 +1,102 @@
+# 拾字 · M0 需求自证配置（Espanso 2.4.1）
+#
+# ===== 本机安装状态：2026-10-10 已完成，你不需要再操作这些 =====
+#   [x] Espanso 2.4.1 已通过 winget 安装（per-user，无需管理员）
+#   [x] 本文件已复制到 %APPDATA%\espanso\match\
+#   [x] 20 个触发码已全部加载   -> 自查命令：espanso match list
+#   [x] 统计数据已开启          -> 自查命令：espanso stats --period today
+#   [x] 已配置开机自启（启动文件夹 espanso.lnk）
+#   [x] espanso 命令已加入 PATH
+#
+# ===== 你要做的只有一件事：用 7 天 =====
+# 在任何输入框里敲触发码就会展开，例如敲 ;gdzx 得到「肝豆状核变性」。
+# 注意：触发码以分号开头，正常打字时基本不会误触；若确实烦人，改前缀即可。
+#
+# ===== 每天记两个数（第二个最重要）=====
+# 1) 触发次数 —— 不用手记，终端里跑：
+#        espanso stats --period today
+#    返回 JSON，看 total 字段。7 天总账用 --period week。
+#
+# 2) 「想用但没有」的词 —— 统计不出来，必须手记在这里：
+#    D1:
+#    D2:
+#    D3:
+#    D4:
+#    D5:
+#    D6:
+#    D7:
+#    -> 这一栏是下一批词条的真实来源，比触发次数更有价值。
+#
+# ===== 7 天后的判定（PRD 第 10 节 M0）=====
+#    日均 >= 3 次  -> 需求成立，进 M1
+#    日均 <  3 次  -> 停止开发，重新评估
+#
+# ===== 实测注意（2026-10-10）=====
+#   Alt+Space 在本机无法注册为全局热键（Espanso 日志报
+#   "unable to register hotkey: ALT+SPACE"），因此未启用搜索面板功能；
+#   触发码展开不受影响。拾字 M1 选热键时必须实测注册，不能假设可用。
+
+matches:
+  # ===== 医学包 medical.zh（A 类生僻字为主）=====
+  - trigger: ";gdzx"
+    replace: "肝豆状核变性"
+  - trigger: ";qc"
+    replace: "龋齿"
+  - trigger: ";qg"
+    replace: "髂骨"          # 颧骨同为首字母 qg，冲突在这里第一次出现
+  - trigger: ";dn"
+    replace: "耵聍"
+  - trigger: ";zj"
+    replace: "癥瘕"
+  - trigger: ";bn"
+    replace: "鼻衄"
+
+  # ===== 化学包 chemistry.zh（Unicode 上下标）=====
+  - trigger: ";13c"
+    replace: "δ¹³C"
+  - trigger: ";co2"
+    replace: "CO₂"
+  - trigger: ";h2so4"
+    replace: "H₂SO₄"
+  - trigger: ";nx"
+    replace: "⇌"
+  - trigger: ";deg"
+    replace: "℃"
+  - trigger: ";mic"
+    replace: "\u00B5"        # U+00B5 MICRO SIGN（单位用），不是希腊字母 μ U+03BC
+  - trigger: ";xila"
+    replace: "α β γ δ ε ζ η θ ι κ λ μ ν ξ ο π ρ σ τ υ φ χ ψ ω"
+
+  # ===== 语言包 language.zh =====
+  - trigger: ";nihao"
+    replace: "nǐ hǎo"
+  - trigger: ";bpmf"
+    replace: "ㄅㄆㄇㄈ"
+  - trigger: ";zy"
+    replace: "ㄅㄆㄇㄈ ㄉㄊㄋㄌ ㄍㄎㄏ ㄐㄑㄒ ㄓㄔㄕㄖ ㄗㄘㄙ"
+  - trigger: ";jt"
+    replace: "𠮷"
+  - trigger: ";ipa"
+    replace: "θ ð ʃ ʒ ŋ"
+  - trigger: ";po"
+    replace: "——"
+  - trigger: ";nbsp"
+    replace: "\u00A0"        # U+00A0 不换行空格；展开后看不见，属正常现象
+
+  # ===== 标点与数学符号（键盘打不出来，写材料常用）=====
+  - trigger: ";cheng"
+    replace: "\u00D7"        # U+00D7 乘号，也是育种里的杂交符号
+  - trigger: ";div"
+    replace: "\u00F7"        # U+00F7 除号
+  - trigger: ";pm"
+    replace: "\u00B1"        # U+00B1 正负号
+  - trigger: ";ap"
+    replace: "\u2248"        # U+2248 约等于
+  - trigger: ";le"
+    replace: "\u2264"        # U+2264 小于等于
+  - trigger: ";ge"
+    replace: "\u2265"        # U+2265 大于等于
+
+  # ===== 系谱组合 =====
+  - trigger: ";kx"
+    replace: "(A123\u00D7B456)\u00D7B456"

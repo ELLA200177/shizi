@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>拾字 · 搜索面板</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="panel" id="panel">
+    <div class="search-row">
+      <span class="ico" aria-hidden="true">&#9906;</span>
+      <input id="q" type="text" autocomplete="off" autocorrect="off" spellcheck="false"
+             placeholder="搜索词条、拼音或首字母&#8230;">
+      <span class="count" id="count"></span>
+    </div>
+    <div class="results" id="results" role="listbox"></div>
+    <div class="footer">
+      <span><kbd>&#8593;</kbd><kbd>&#8595;</kbd> 选择</span>
+      <span><kbd>Enter</kbd> 插入</span>
+      <span><kbd>Esc</kbd> 关闭</span>
+      <span class="right" id="hint"></span>
+      <a class="mgr-link" id="mgrLink" href="#" hidden>词库管理</a>
+    </div>
+  </div>
+
+  <div class="switcher" id="switcher">
+    <span class="sw-label">配色</span>
+    <div class="sw-dots" id="swDots"></div>
+    <span class="sw-name" id="swName"></span>
+    <a class="sw-link" href="gallery.html" target="_blank">全部对比 &#8594;</a>
+  </div>
+
+  <script src="themes.js"></script>
+  <script src="entries.js"></script>
+  <script src="search-core.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
